@@ -1,8 +1,26 @@
 version: '3'
 services:
   this_jupyter:
-    image: jupyter/scipy-notebook
+    build: docker/jupyter
     ports:
       - "8888:8888"
     volumes:
       - .:/home/jovyan
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  this_postgres:
+    build: docker/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  postgres_data:
