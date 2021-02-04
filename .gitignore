@@ -4,3 +4,5 @@
 .local
 .vscode
 .jupyter
+*/__pycache__/
+.bash_history
